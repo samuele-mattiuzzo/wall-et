@@ -1,0 +1,9 @@
+{% if expenses %}
+    <ul>
+    {% for expense in expenses %}
+        <li>{{ expense.name }} {{ expense.date }} {{ expense.amount }} {{ expense.category }} {{ expense.expense_type }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

@@ -1,10 +1,9 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-
+from django.views.generic.list import ListView
 from .models import Expense
 
 
-def index(request):
-    expenses = Expense.objects.order_by('date')
-    context = {'expenses': expenses}
-    return render(request, 'expenses/index.html', context)
+class IndexView(ListView):
+    template_name = 'expenses/index.html'
+    context_object_name = 'expenses'
+    model = Expense
+    ordering = ['date']

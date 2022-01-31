@@ -19,4 +19,4 @@ class Expense(models.Model):
     date = models.DateField()
 
     def __str__(self):
-        return '[{}] {}'.format(self.date, self.name)
+        return '{} : "{}"'.format(self.date, self.name)

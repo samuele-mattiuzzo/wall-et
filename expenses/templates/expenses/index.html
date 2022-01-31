@@ -1,10 +1,27 @@
-{% if expenses %}
-    <ul>
-    {% for expense in expenses %}
-        <li>{{ expense }} {{ expense.amount }} {{ expense.category }} {{ expense.expense_type }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+{% extends 'expenses/base.html' %}
 
+{% block content %}
+  <div class="grid grid-cols-3 gap-4">
+    {% if expenses %}
+        {% for expense in expenses %}
+        <div class="col-span-1">
+            <p class="uppercase">{{ expense }}
+                 <span class="badge badge-ghost">{{ expense.category }}</span> 
+                {% if expense.expense_type == 'in' %}
+                    <span class="badge badge-accent">
+                {% else %}
+                    <span class="badge badge-secondary">
+                {% endif %}
+                    {{ expense.expense_type }}
+                </span>
+                £{{ expense.amount }}
+            </p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-span-3">
+            <p>No expenses.</p>
+        </div>
+    {% endif %}
+    </div>
+{% endblock content %}
